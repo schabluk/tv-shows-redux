@@ -23,6 +23,7 @@ export default function Shows() {
 
   useErrorHandler(error)
 
+  if (!shows) return null
   if (isLoading)
     return <div className={`${pendingStyle} bg-blue-300`}>Loading...</div>
 

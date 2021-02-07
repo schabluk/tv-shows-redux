@@ -6,11 +6,10 @@ import { unwrapResult } from '@reduxjs/toolkit'
 
 import actions from '../store/actions'
 import selectors from '../store/selectors'
-import type { ApplicationStore as Store, ApplicationDispatch } from '../types'
+import type { ApplicationStore as Store } from '../types'
 
 function useAsyncDispatch() {
   return useDispatch<any>()
-  // return useDispatch<any>()
 }
 
 const commonStyle = 'flex-1'
@@ -24,11 +23,13 @@ export default function ShowContainer() {
   const isLoading = useSelector(selectors.shows.isLoading)
 
   React.useEffect(() => {
+    console.log({ id })
     dispatch(actions.title.titleGet(parseInt(id, 10)))
       .then(unwrapResult)
       .catch(onReject)
   }, [id])
 
+  if (!title) return null
   if (isLoading)
     return <div className={`${pendingStyle} bg-blue-300`}>Loading...</div>
 

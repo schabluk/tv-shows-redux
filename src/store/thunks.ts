@@ -6,6 +6,8 @@ import { getTitle } from './api'
 export const titleGet = createAsyncThunk<Title, number>(
   ActionTypes.TITLE_GET,
   async (id) => {
-    return await getTitle(id)
+    const result = await getTitle(id)
+    console.log({ result })
+    return result
   },
 )
